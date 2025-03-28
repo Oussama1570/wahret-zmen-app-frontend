@@ -55,41 +55,52 @@ const AddProduct = () => {
 
     // New onSubmit function with debug logs
     const onSubmit = async (data) => {
-        console.log("Form Data:", data);  // Debugging the form data
-        console.log("Cover Image File:", coverImageFile); // Debugging file selection
-        
-        let coverImage = await uploadImage(coverImageFile);
-        console.log("Uploaded Cover Image:", coverImage);  // Check image upload result
-        
+        console.log("Form Data:", data);
+        console.log("Cover Image File:", coverImageFile);
+      
+        let coverImage = "";
+        if (coverImageFile instanceof File) {
+          coverImage = await uploadImage(coverImageFile);
+          console.log("Uploaded Cover Image:", coverImage);
+        } else {
+          console.warn("No valid cover image selected");
+        }
+      
         const colors = await Promise.all(
-            colorInputs.map(async (colorInput) => {
-                if (colorInput.imageFile && colorInput.colorName) {
-                    const imageUrl = await uploadImage(colorInput.imageFile);
-                    return { colorName: colorInput.colorName, image: imageUrl };
-                }
-                return null;
-            })
-        ).then((res) => res.filter(Boolean));
-
-        console.log("Colors:", colors);  // Check colors data
-
+          colorInputs.map(async (colorInput) => {
+            if (colorInput.imageFile instanceof File && colorInput.colorName) {
+              const imageUrl = await uploadImage(colorInput.imageFile);
+              return { colorName: colorInput.colorName, image: imageUrl };
+            }
+            return null;
+          })
+        );
+        const filteredColors = colors.filter(Boolean);
+      
         const allowedCategories = ["Men", "Women", "Children"];
         const finalCategory = allowedCategories.includes(data.category) ? data.category : "Men";
-
-        const newProductData = { ...data, category: finalCategory, coverImage, colors };
-
+      
+        // ✅ PLACE IT HERE:
+        const newProductData = {
+          ...data,
+          category: finalCategory,
+          coverImage,
+          colors: filteredColors,
+        };
+      
         try {
-            await addProduct(newProductData).unwrap();
-            Swal.fire("Succès!", "Produit ajouté avec succès!", "success");
-            reset();
-            setCoverImageFile(null);
-            setCoverPreviewURL("");
-            setColorInputs([]);
+          await addProduct(newProductData).unwrap();
+          Swal.fire("Succès!", "Produit ajouté avec succès!", "success");
+          reset();
+          setCoverImageFile(null);
+          setCoverPreviewURL("");
+          setColorInputs([]);
         } catch (error) {
-            console.error("Error adding product:", error);
-            Swal.fire("Erreur!", "Échec de l'ajout du produit.", "error");
+          console.error("Error adding product:", error);
+          Swal.fire("Erreur!", "Échec de l'ajout du produit.", "error");
         }
-    };
+      };
+      
 
     return (
         <div className="px-4 sm:px-6 py-6">
