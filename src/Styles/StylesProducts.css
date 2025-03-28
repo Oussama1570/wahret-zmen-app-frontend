@@ -1,0 +1,28 @@
+.container-Products {
+  width: 100%;
+}
+
+.wahret-zmen-btn {
+  background-color: #a67c52;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.wahret-zmen-btn:hover {
+  background-color: #8a5d3b;
+}
+
+@media (max-width: 768px) {
+  .category-title {
+    font-size: 1.1rem;
+  }
+
+  .wahret-zmen-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
