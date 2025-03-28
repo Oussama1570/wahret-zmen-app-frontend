@@ -56,8 +56,8 @@ const AddProduct = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log("Form Data:", data);
-    console.log("📱 coverImageFile:", coverImageFile);
+    console.log("📤 Form Data:", data);
+    console.log("📱 Cover Image File:", coverImageFile);
 
     let coverImage = "";
     if (coverImageFile instanceof File) {
@@ -86,7 +86,12 @@ const AddProduct = () => {
       category: finalCategory,
       coverImage,
       colors: filteredColors,
+      oldPrice: Number(data.oldPrice),
+      newPrice: Number(data.newPrice),
+      stockQuantity: Number(data.stockQuantity),
     };
+
+    console.log("🟡 Final Product Payload to Backend:", newProductData);
 
     try {
       await addProduct(newProductData).unwrap();
@@ -96,7 +101,7 @@ const AddProduct = () => {
       setCoverPreviewURL("");
       setColorInputs([]);
     } catch (error) {
-      console.error("❌ Error adding product:", error);
+      console.error("❌ Error adding product:", error?.data || error);
       Swal.fire("Erreur!", "Échec de l'ajout du produit.", "error");
     }
   };
@@ -135,7 +140,13 @@ const AddProduct = () => {
           className="w-full p-2 border rounded"
           required
         />
-        {coverPreviewURL && <img src={coverPreviewURL} alt="Aperçu de l'Image" className="w-32 h-32 mt-2 object-cover rounded border" />}
+        {coverPreviewURL && (
+          <img
+            src={coverPreviewURL}
+            alt="Aperçu de l'Image"
+            className="w-32 h-32 mt-2 object-cover rounded border"
+          />
+        )}
 
         {/* Color Inputs */}
         <label className="block font-medium">Couleurs du Produit (Optionnel)</label>
@@ -155,7 +166,13 @@ const AddProduct = () => {
               className="w-full p-2 border rounded"
               onChange={(e) => handleColorInputChange(index, "imageFile", e.target.files[0])}
             />
-            {input.previewURL && <img src={input.previewURL} alt="Aperçu de la Couleur" className="w-20 h-20 mt-1 object-cover rounded border" />}
+            {input.previewURL && (
+              <img
+                src={input.previewURL}
+                alt="Aperçu de la Couleur"
+                className="w-20 h-20 mt-1 object-cover rounded border"
+              />
+            )}
             <button
               type="button"
               onClick={() => deleteColorInput(index)}
@@ -165,14 +182,18 @@ const AddProduct = () => {
             </button>
           </div>
         ))}
-        <button type="button" onClick={addColorInput} className="px-3 py-2 bg-gray-300 rounded">
+        <button
+          type="button"
+          onClick={addColorInput}
+          className="px-3 py-2 bg-gray-300 rounded"
+        >
           Ajouter une Couleur (Optionnel)
         </button>
 
         {/* Submit */}
         <button
           type="submit"
-          className="w-full py-3 px-4 bg-[#A67C52] text-white rounded-md text-center font-semibold text-base hover:bg-[#8a5d3b] active:scale-95 transition duration-200"
+          className="block w-full mt-4 bg-[#A67C52] text-white py-3 rounded hover:bg-[#8a5d3b] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A67C52] active:scale-95 transition duration-200"
         >
           {isLoading ? "Ajout en cours..." : "Ajouter le Produit"}
         </button>
