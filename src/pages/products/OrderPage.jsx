@@ -10,7 +10,6 @@ import { Helmet } from "react-helmet";
 import LoadingSpinner from "../../components/Loading";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
-import "../../Styles/StylesOrderPage.css";
 
 const OrderPage = () => {
   const { currentUser } = useAuth();
@@ -26,7 +25,7 @@ const OrderPage = () => {
 
   if (!userEmail) {
     return (
-      <div className="flex items-center justify-center min-h-screen ">
+      <div className="flex items-center justify-center min-h-screen px-4">
         <p className="text-lg font-semibold text-gray-600">
           {t("ordersPage.pleaseLogin")}
         </p>
@@ -97,13 +96,13 @@ const OrderPage = () => {
   };
 
   return (
-    <div className="bg-gray-50 py-12 min-h-screen screen-Order-Page">
+    <div className="bg-gray-50 py-12 min-h-screen px-4 sm:px-6 mt-6 md:mt-12">
       <Helmet>
         <title>{t("ordersPage.title")}</title>
       </Helmet>
 
-      <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">
+      <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-4 sm:p-6 md:p-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
           {t("ordersPage.yourOrders")}
         </h2>
 
@@ -113,14 +112,13 @@ const OrderPage = () => {
           <div className="space-y-6">
             {orders.map((order, index) => (
               <div key={order._id} className="bg-gray-100 p-6 rounded-lg shadow-sm">
-                <div className="flex justify-between items-center mb-3">
+                <div className="flex flex-wrap justify-between items-center gap-2 mb-3">
                   <p className="text-gray-700 font-medium">
                     <span className="text-gray-900 font-semibold">{t("ordersPage.orderNumber")}:</span> {index + 1}
                   </p>
-                  <p className="text-gray-600">{new Date(order?.createdAt).toLocaleDateString()}</p>
+                  <p className="text-gray-600 text-sm">{new Date(order?.createdAt).toLocaleDateString()}</p>
                 </div>
 
-                {/* ✅ Order ID - only first 6 characters */}
                 <h2 className="font-semibold text-gray-900">
                   {t("ordersPage.orderId")}: {order._id.slice(0, 6)}...
                 </h2>
@@ -137,13 +135,16 @@ const OrderPage = () => {
                   {order.products.map((product, idx) => {
                     if (!product.productId) return null;
                     return (
-                      <li key={`${product.productId._id}-${idx}`} className="flex items-center gap-6 bg-white p-4 rounded-lg shadow-sm">
+                      <li
+                        key={`${product.productId._id}-${idx}`}
+                        className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white p-4 rounded-lg shadow-sm"
+                      >
                         <img
                           src={getImgUrl(product.color?.image || product.productId.coverImage)}
                           alt={product.productId.title}
-                          className="w-32 h-32 object-cover rounded-lg border"
+                          className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg border"
                         />
-                        <div>
+                        <div className="text-center sm:text-left">
                           <p className="font-semibold text-gray-800">
                             {product.productId.title || t("ordersPage.noTitle")}
                           </p>

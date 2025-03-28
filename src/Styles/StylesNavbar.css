@@ -99,12 +99,12 @@ html[dir="rtl"] .logo {
   bottom: -3px;
   width: 0;
   height: 2px;
-  background-color: #8B5C3E;
+  background-color: #000000;
   transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 
 .nav-links a:hover {
-  color: #8B5C3E;
+  color: #000000;
 }
 
 .nav-links a:hover::after {
@@ -125,9 +125,7 @@ html[dir="rtl"] .logo {
   
 }
 
-.mobile-menu-btn:hover {
-  transform: scale(1.1);
-}
+
 
 @media (max-width: 1024px) {
   .mobile-menu-btn {

@@ -81,24 +81,27 @@ const DashboardLayout = () => {
 
       {/* Main Content */}
       <div className="flex-grow text-gray-800 overflow-auto ">
-      <header className="bg-white shadow-md py-4 px-6 flex flex-col md:flex-row md:justify-between items-center sticky top-0 z-30 w-full">
-  <h1 className="text-2xl font-semibold text-[#8B5C3E] mb-4 md:mb-0 w-full">Tableau de Bord</h1>
-  <div className="flex flex-row items-center gap-8 md:gap-12 lg:gap-16 w-full justify-end">
-    <Link to="/dashboard/add-new-product">
-      <button className="flex items-center justify-center px-8 py-3 h-14 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-all w-full md:w-auto">
+      <header className="bg-white shadow-md py-4 px-6 flex flex-col gap-4 md:flex-row md:justify-between items-center sticky top-0 z-30 w-full">
+  <h1 className="text-2xl font-semibold text-[#8B5C3E] w-full text-center md:text-left">
+    Tableau de Bord
+  </h1>
+
+  <div className="flex flex-col gap-4 w-full md:flex-row md:items-center md:justify-end">
+    <Link to="/dashboard/add-new-product" className="w-full md:w-auto">
+      <button className="flex items-center justify-center w-full px-6 py-3 h-14 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-all">
         <FaPlusCircle className="h-5 w-5 mr-2" />
         Ajouter un Produit
       </button>
     </Link>
-    <Link to="/dashboard/manage-products">
-      <button className="flex items-center justify-center px-8 py-3 h-14 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-all w-full md:w-auto">
+    <Link to="/dashboard/manage-products" className="w-full md:w-auto">
+      <button className="flex items-center justify-center w-full px-6 py-3 h-14 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-all">
         <FaTools className="h-5 w-5 mr-2" />
         Gérer les Produits
       </button>
     </Link>
     <button 
-      onClick={handleLogout} 
-      className="flex items-center justify-center px-8 py-3 h-14 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700 transition-all w-full md:w-auto"
+      onClick={handleLogout}
+      className="flex items-center justify-center w-full px-6 py-3 h-14 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700 transition-all md:w-auto"
     >
       <FaSignOutAlt className="h-5 w-5 mr-2" />
       Se Déconnecter

@@ -5,7 +5,6 @@ import { getImgUrl } from "../../../utils/getImgUrl";
 import { Helmet } from "react-helmet";
 import LoadingSpinner from "../../../components/Loading";
 import { useTranslation } from "react-i18next";
-import "../../../Styles/StylesUserDashboard.css";
 
 const UserDashboard = () => {
   const { currentUser } = useAuth();
@@ -20,21 +19,21 @@ const UserDashboard = () => {
       : currentUser?.username || t("userDashboard.defaultUser");
 
   return (
-    <div className="bg-[#F8F1E9] py-12 min-h-screen">
+    <div className="bg-[#F8F1E9] py-12 min-h-screen px-4 sm:px-6">
       <Helmet>
         <title>{t("userDashboard.title")}</title>
       </Helmet>
 
-      <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-8 border border-[#A67C52] screen-User-Dashboard">
-        <h1 className="text-3xl font-bold text-[#A67C52] mb-2 text-center">
+      <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-4 sm:p-6 md:p-8 border border-[#A67C52] mt-6 md:mt-12">
+        <h1 className="text-2xl sm:text-3xl font-bold text-[#A67C52] mb-2 text-center">
           {t("userDashboard.welcome", { name: customerName })}
         </h1>
-        <p className="text-gray-600 text-lg mb-6 text-center">
+        <p className="text-gray-600 text-base sm:text-lg mb-6 text-center">
           {t("userDashboard.overview")}
         </p>
 
         <div className="mt-6">
-          <h2 className="text-2xl font-semibold text-[#A67C52] mb-4 text-center">
+          <h2 className="text-xl sm:text-2xl font-semibold text-[#A67C52] mb-4 text-center">
             {t("userDashboard.yourOrders")}
           </h2>
 
@@ -45,7 +44,7 @@ const UserDashboard = () => {
                   key={order._id}
                   className="bg-gray-100 p-6 rounded-lg shadow-sm border-l-4 border-[#A67C52]"
                 >
-                  <div className="flex justify-between items-center mb-3">
+                  <div className="flex justify-between items-center mb-3 flex-wrap gap-y-2">
                     <p className="text-gray-700 font-medium">
                       <span className="text-[#A67C52] font-semibold">
                         {t("userDashboard.orderId")}:
@@ -54,8 +53,7 @@ const UserDashboard = () => {
                         {order._id.slice(0, 6)}...
                       </span>
                     </p>
-
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 text-sm">
                       {new Date(order?.createdAt).toLocaleDateString()}
                     </p>
                   </div>
@@ -74,7 +72,7 @@ const UserDashboard = () => {
                       return (
                         <li
                           key={`${product.productId._id}-${index}`}
-                          className="flex items-center gap-6 bg-white p-4 rounded-lg shadow-sm border border-[#A67C52]"
+                          className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-white p-4 rounded-lg shadow-sm border border-[#A67C52]"
                         >
                           <img
                             src={
@@ -83,9 +81,9 @@ const UserDashboard = () => {
                                 : getImgUrl(product.productId.coverImage)
                             }
                             alt={product.productId.title || t("userDashboard.noTitle")}
-                            className="w-32 h-32 object-cover rounded-lg border-2 border-[#A67C52]"
+                            className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg border-2 border-[#A67C52]"
                           />
-                          <div>
+                          <div className="text-center sm:text-left">
                             <p className="font-semibold text-gray-800">
                               {product.productId.title || t("userDashboard.noTitle")}
                             </p>

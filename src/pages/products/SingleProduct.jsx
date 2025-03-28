@@ -153,12 +153,12 @@ const translatedCategory = t(`categories.${categoryKey}`, product?.category); //
                     className={`w-16 h-16 object-cover rounded cursor-pointer border-4 transition-all ${
                       selectedColor?.colorName?.en === color?.colorName?.en
 
-                        ? "border-[#8B5E3B]"
+                        ? "border-[#8B5E3B]" 
                         : "border-transparent"
                     }`}
                     onClick={() => handleSelectColor(color)}
                   />
-                ))} alt
+                ))} 
               </div>
 
               <p className="mt-3 text-lg text-[#6B4226]">
