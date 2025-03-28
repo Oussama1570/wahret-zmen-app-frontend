@@ -92,7 +92,9 @@ const AddProduct = () => {
     };
 
     return (
+        <div className="px-4 sm:px-6 py-6">
         <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md w-full ">
+            <div className="max-w-md w-full mx-auto px-4">
             <h2 className="text-2xl font-bold text-center text-[#A67C52] mb-4">Ajouter un Nouveau Produit</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 overflow-x-auto">
                 <input {...register("title")} className="w-full p-2 border rounded" placeholder="Nom du Produit" required />
@@ -147,10 +149,16 @@ const AddProduct = () => {
                 </button>
 
                 {/* Submit button */}
-                <button type="submit" className="w-full py-2 bg-[#A67C52] text-white rounded-md hover:bg-[#8a5d3b]">
-                    {isLoading ? "Ajout en cours..." : "Ajouter le Produit"}
-                </button>
+                <button
+  type="submit"
+  className="w-full py-3 px-4 bg-[#A67C52] text-white rounded-md text-center font-semibold text-base hover:bg-[#8a5d3b] active:scale-95 transition duration-200"
+>
+  {isLoading ? "Ajout en cours..." : "Ajouter le Produit"}
+</button>
+
             </form>
+            </div>
+        </div>
         </div>
     );
 };

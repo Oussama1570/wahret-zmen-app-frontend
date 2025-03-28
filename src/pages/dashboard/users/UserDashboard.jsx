@@ -19,7 +19,7 @@ const UserDashboard = () => {
       : currentUser?.username || t("userDashboard.defaultUser");
 
   return (
-    <div className="bg-[#F8F1E9] py-12 min-h-screen px-4 sm:px-6">
+    <div className="bg-[#F8F1E9] py-12 min-h-screen px-4 sm:px-6 UserDashboard-screen">
       <Helmet>
         <title>{t("userDashboard.title")}</title>
       </Helmet>

@@ -96,7 +96,7 @@ const OrderPage = () => {
   };
 
   return (
-    <div className="bg-gray-50 py-12 min-h-screen px-4 sm:px-6 mt-6 md:mt-12">
+    <div className="bg-gray-50 py-12 min-h-screen px-4 sm:px-6 mt-6 md:mt-12 OrderPage OrderPage-screen">
       <Helmet>
         <title>{t("ordersPage.title")}</title>
       </Helmet>
