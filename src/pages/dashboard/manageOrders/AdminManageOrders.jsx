@@ -159,28 +159,34 @@ const AdminManageOrders = () => {
                                         {order.address.city}, {order.address.street}
                                     </td>
                                     <td className="px-6 py-3 border">{order.totalPrice} USD</td>
-                                    <td className="px-4 py-3 border text-center">
-  <select
-    value={editingOrder === order._id ? updatedValues.isPaid ?? order.isPaid : order.isPaid}
-    onChange={(e) => handleChange("isPaid", e.target.value === "true")}
-    disabled={editingOrder !== order._id}
-    className="w-full sm:w-auto px-2 py-1 rounded-md border text-xs sm:text-sm"
-  >
-    <option value="true">Oui</option>
-    <option value="false">Non</option>
-  </select>
+                                    <td className="px-4 py-3 border">
+  <div className="min-w-[90px]">
+    <select
+      value={editingOrder === order._id ? updatedValues.isPaid ?? order.isPaid : order.isPaid}
+      onChange={(e) => handleChange("isPaid", e.target.value === "true")}
+      disabled={editingOrder !== order._id}
+      className="w-full px-2 py-1 rounded-md border text-xs sm:text-sm"
+    >
+      <option value="true">Oui</option>
+      <option value="false">Non</option>
+    </select>
+  </div>
 </td>
-<td className="px-4 py-3 border text-center">
-  <select
-    value={editingOrder === order._id ? updatedValues.isDelivered ?? order.isDelivered : order.isDelivered}
-    onChange={(e) => handleChange("isDelivered", e.target.value === "true")}
-    disabled={editingOrder !== order._id}
-    className="w-full sm:w-auto px-2 py-1 rounded-md border text-xs sm:text-sm"
-  >
-    <option value="true">Oui</option>
-    <option value="false">Non</option>
-  </select>
+
+<td className="px-4 py-3 border">
+  <div className="min-w-[90px]">
+    <select
+      value={editingOrder === order._id ? updatedValues.isDelivered ?? order.isDelivered : order.isDelivered}
+      onChange={(e) => handleChange("isDelivered", e.target.value === "true")}
+      disabled={editingOrder !== order._id}
+      className="w-full px-2 py-1 rounded-md border text-xs sm:text-sm"
+    >
+      <option value="true">Oui</option>
+      <option value="false">Non</option>
+    </select>
+  </div>
 </td>
+
 
                                     <td className="px-6 py-3 border">
     <div className="flex justify-center items-center gap-4">
