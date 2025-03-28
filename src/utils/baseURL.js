@@ -1,5 +1,5 @@
   const getBaseUrl = () => {
-    return "https://wahret-zmen-app-backend-zeta.vercel.app"
+    return "https://wahret-zmen-app-backend-murex.vercel.app"
 }
 
 export default getBaseUrl;
